@@ -1,28 +1,45 @@
-# https://help.github.com/en/articles/metadata-syntax-for-github-actions
-name: Arch Linux bump package versions action
-description: GitHub Action to bump versions of nepositories containing PKGBUILDs.
+name: Arch Linux bump package version action
+description: GitHub Action to bump the version of a PKGBUILD.
 author: callmetango
 
 inputs:
-  name-pattern:
-    description: The pattern of the package names to consider
-    type: string
-  old-version:
-    description: The old version to bump
-    type: string
-  new-version:
+  pkgver:
     description: The new version to bump to
     type: string
-
-  # repository filters
-  owner:
-    description: The owner of the GitHub repositories. (Defaults to the owner of the current repository)
+    required: true
+  pkgrel: 
+    description: The pkgrel to use
+    type: string
+  old-version:
+    description: |
+      The old version. If the package version does not match this pattern the action will fail.
+      Not implemented
+    type: string
+  srcinfo:
+    description: Generate new .SRCINFO
+    type: boolean
+    default: true
+  updpkgsums:
+    description: Update the checksums of the PKGBUILD
+    type: boolean
+    default: true
+  namcap:
+    description: Set to true to validate the PKGBUILD with namcap
+    type: boolean
+    default: true
+  namcap-opts:
+    description: Options to pass to namcap
+    type: string
+    default: '-i'
 
 runs:
   using: docker
   image: Dockerfile
   env:
-    INPUT_NAME_PATTERN: ${{ inputs.name-pattern }}
+    INPUT_PKGVER: ${{ inputs.pkgver }}
+    INPUT_PKGREL: ${{ inputs.pkgrel }}
     INPUT_OLD_VERSION: ${{ inputs.old-version }}
-    INPUT_NEW_VERSION: ${{ inputs.new-version }}
-    INPUT_OWNER: ${{ inputs.owner }}
+    INPUT_SCRINFO: ${{ inputs.srcinfo }}
+    INPUT_UPDPKGSUMS: ${{ inputs.updpkgsums }}
+    INPUT_NAMCAP: ${{ inputs.namcap }}
+    INPUT_NAMCAP_OPTS: ${{ inputs.namcap-opts }}
