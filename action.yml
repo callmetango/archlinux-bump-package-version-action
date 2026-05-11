@@ -3,6 +3,9 @@ description: GitHub Action to bump the version of a PKGBUILD.
 author: callmetango
 
 inputs:
+  path:
+    description: Location for this action to run
+    type: string
   pkgver:
     description: The new version to bump to
     type: string
@@ -36,6 +39,7 @@ runs:
   using: docker
   image: Dockerfile
   env:
+    INPUT_PATH: ${{ inputs.path }}
     INPUT_PKGVER: ${{ inputs.pkgver }}
     INPUT_PKGREL: ${{ inputs.pkgrel }}
     INPUT_OLD_VERSION: ${{ inputs.old-version }}
