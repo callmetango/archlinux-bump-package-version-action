@@ -1,0 +1,23 @@
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+name: Arch Linux bump package versions action
+description: GitHub Action to bump versions of nepositories containing PKGBUILDs.
+author: callmetango
+
+inputs:
+  name-pattern:
+    description: The pattern of the package names to consider
+    type: string
+  old-version:
+    description: The old version to bump
+    type: string
+  new-version:
+    description: The new version to bump to
+    type: string
+
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    INPUT_NAME_PATTERN: ${{ inputs.name-pattern }}
+    INPUT_OLD_VERSION: ${{ inputs.old-version }}
+    INPUT_NEW_VERSION: ${{ inputs.new-version }}
