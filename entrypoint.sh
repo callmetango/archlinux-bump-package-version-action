@@ -32,7 +32,7 @@ if [ "$INPUT_UPDPKGSUMS" = 'true' ] ; then
 	git --no-pager diff PKGBUILD
 fi
 
-if [ "$INPUT_SRCINFO" = 'true' -o [ "$INPUT_SRCINFO" = 'auto' -a -e .SRCINFO ] ] ; then
+if [ "$INPUT_SRCINFO" = 'true' ] || [ "$INPUT_SRCINFO" = 'auto' -a -e .SRCINFO ] ; then
 	echo "Generating new .SRCINFO based on PKGBUILD"
 	makepkg --printsrcinfo > .SRCINFO
 	git --no-pager diff .SRCINFO
