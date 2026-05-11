@@ -45,10 +45,10 @@ fi
 
 # Outputs
 source PKGBUILD
-printf "pkgname=$pkgname\n" >> $GITHUB_OUTPUT
-printf "pkgbase=$pkgbase\n" >> $GITHUB_OUTPUT
-printf "pkgver=$pkgver\n" >> $GITHUB_OUTPUT
-printf "pkgrel=$pkgrel\n" >> $GITHUB_OUTPUT
+printf "pkgname=$pkgname\n" | sudo tee -a $GITHUB_OUTPUT
+printf "pkgbase=$pkgbase\n" | sudo tee -a $GITHUB_OUTPUT
+printf "pkgver=$pkgver\n" | sudo tee -a $GITHUB_OUTPUT
+printf "pkgrel=$pkgrel\n" | sudo tee -a $GITHUB_OUTPUT
 
 WORKPATH="$GITHUB_WORKSPACE/$INPUT_PATH"
 WORKPATH="${WORKPATH%/}"
