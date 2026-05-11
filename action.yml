@@ -14,6 +14,10 @@ inputs:
     description: The new version to bump to
     type: string
 
+  # repository filters
+  owner:
+    description: The owner of the GitHub repositories. (Defaults to the owner of the current repository)
+
 runs:
   using: docker
   image: Dockerfile
@@ -21,3 +25,4 @@ runs:
     INPUT_NAME_PATTERN: ${{ inputs.name-pattern }}
     INPUT_OLD_VERSION: ${{ inputs.old-version }}
     INPUT_NEW_VERSION: ${{ inputs.new-version }}
+    INPUT_OWNER: ${{ inputs.owner }}
