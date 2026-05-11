@@ -6,18 +6,23 @@ set -eu
 HOME=/home/builder
 BUILDDIR="$HOME"/work
 
-INPUT_PGKREL="${INPUT_PGKREL:-1}"
-
 mkdir -p "$BUILDDIR"
 cd "$BUILDDIR"
 
 cp -rTfv "$GITHUB_WORKSPACE"/ ./
 test "x$INPUT_PATH" != 'x' && cd "$INPUT_PATH"
 
-echo "Updating pkgver and pkgrel of PKGBUILD"
-sed -i "s/^pkgver=.*$/pkgver=$INPUT_PKGVER/g" PKGBUILD
-sed -i "s/^pkgrel=.*$/pkgrel=$INPUT_PGKREL/g" PKGBUILD
-git --no-pager diff PKGBUILD
+if [ "x$INPUT_PKGVER" != 'x' ] ; then
+	echo "Updating pkgver of PKGBUILD"
+	sed -i "s/^pkgver=.*$/pkgver=$INPUT_PKGVER/g" PKGBUILD
+	git --no-pager diff PKGBUILD
+fi
+
+if [ "x$INPUT_PKGREL" != 'x' ] ; then
+	echo "Updating pkgrel of PKGBUILD"
+	sed -i "s/^pkgrel=.*$/pkgrel=$INPUT_PKGREL/g" PKGBUILD
+	git --no-pager diff PKGBUILD
+fi
 
 if [ "$INPUT_UPDPKGSUMS" = 'true' ] ; then
 	echo "Updating checksums on PKGBUILD"
