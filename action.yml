@@ -9,7 +9,6 @@ inputs:
   pkgver:
     description: The new version to bump to
     type: string
-    required: true
   pkgrel: 
     description: The pkgrel to use
     type: string
