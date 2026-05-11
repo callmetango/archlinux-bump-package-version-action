@@ -9,6 +9,13 @@ BUILDDIR="$HOME"/work
 mkdir -p "$BUILDDIR"
 cd "$BUILDDIR"
 
+# Pre conditions
+if [ -z "$INPUT_PKGVER" -a -z "$INPUT_PKGREL" ] ; then
+	echo "At least a pkgver or a pkgrel must be given."
+	exit 1
+fi
+
+# Main
 cp -rTfv "$GITHUB_WORKSPACE"/ ./
 test "x$INPUT_PATH" != 'x' && cd "$INPUT_PATH"
 
