@@ -42,8 +42,8 @@ printf "pkgbase=$pkgbase\n" >> $GITHUB_OUTPUT
 printf "pkgver=$pkgver\n" >> $GITHUB_OUTPUT
 printf "pkgrel=$pkgrel\n" >> $GITHUB_OUTPUT
 
-WORKPATH=$GITHUB_WORKSPACE/$INPUT_PATH
-WORKPATH=${WORKPATH%/}
+WORKPATH="$GITHUB_WORKSPACE/$INPUT_PATH"
+WORKPATH="${WORKPATH%/}"
 echo "Copying files from $BUILDDIR to $WORKPATH"
 sudo cp -fv PKGBUILD "$WORKPATH"/PKGBUILD
 test -e .SRCINFO && sudo cp -fv .SRCINFO "$WORKPATH"/.SRCINFO
