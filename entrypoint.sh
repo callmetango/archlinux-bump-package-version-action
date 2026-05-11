@@ -33,7 +33,7 @@ if [ "x$INPUT_PKGREL" != 'x' ] ; then
 fi
 
 if [ "$INPUT_UPDPKGSUMS" = 'true' ] ; then
-	echo "Updating checksums on PKGBUILD"
+	echo "Updating checksums of PKGBUILD"
 	updpkgsums
 	git --no-pager diff PKGBUILD
 fi
@@ -45,7 +45,7 @@ if [ "$INPUT_SRCINFO" = 'true' -o [ "$INPUT_SRCINFO" = 'auto' -a -e .SRCINFO ] ]
 fi
 
 if [ "$INPUT_NAMCAP" = 'true' ] ; then
-	glgrp "Validating PKGBUILD with namcap"
+	echo "Validating PKGBUILD with namcap"
 	namcap $INPUT_NAMCAP_OPTS PKGBUILD
 fi
 
