@@ -9,7 +9,7 @@ BUILDDIR="$HOME"/work
 mkdir -p "$BUILDDIR"
 cd "$BUILDDIR"
 
-# Pre conditions
+# Preconditions
 if [ -z "$INPUT_PKGVER" -a -z "$INPUT_PKGREL" ] ; then
 	echo "At least a pkgver or a pkgrel must be given."
 	exit 1
