@@ -44,6 +44,7 @@ if [ "$INPUT_NAMCAP" = 'true' ] ; then
 fi
 
 # Outputs
+pkgbase=''; pkgname='';
 source PKGBUILD
 printf "pkgname=$pkgname\n" | sudo tee -a $GITHUB_OUTPUT
 printf "pkgbase=$pkgbase\n" | sudo tee -a $GITHUB_OUTPUT
