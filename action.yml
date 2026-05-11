@@ -20,8 +20,12 @@ inputs:
     type: string
   srcinfo:
     description: Generate new .SRCINFO
-    type: boolean
-    default: true
+    type: choice
+    options:
+      - auto
+      - true
+      - false
+    default: auto
   updpkgsums:
     description: Update the checksums of the PKGBUILD
     type: boolean
@@ -29,7 +33,6 @@ inputs:
   namcap:
     description: Set to true to validate the PKGBUILD with namcap
     type: boolean
-    default: true
   namcap-opts:
     description: Options to pass to namcap
     type: string
