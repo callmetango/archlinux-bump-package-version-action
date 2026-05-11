@@ -49,6 +49,7 @@ if [ "$INPUT_NAMCAP" = 'true' ] ; then
 	namcap $INPUT_NAMCAP_OPTS PKGBUILD
 fi
 
+# Outputs
 source PKGBUILD
 printf "pkgname=$pkgname\n" >> $GITHUB_OUTPUT
 printf "pkgbase=$pkgbase\n" >> $GITHUB_OUTPUT
