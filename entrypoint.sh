@@ -6,19 +6,20 @@ set -eu
 HOME=/home/builder
 BUILDDIR="$HOME"/work
 
-mkdir -p "$BUILDDIR"
-cd "$BUILDDIR"
-
 # Preconditions
 if [ -z "$INPUT_PKGVER" -a -z "$INPUT_PKGREL" ] ; then
 	echo "At least a pkgver or a pkgrel must be given."
 	exit 1
 fi
 
-# Main
+# Setup
+mkdir -p "$BUILDDIR"
+cd "$BUILDDIR"
+
 cp -rTfv "$GITHUB_WORKSPACE"/ ./
 test "x$INPUT_PATH" != 'x' && cd "$INPUT_PATH"
 
+# Main
 if [ "x$INPUT_PKGVER" != 'x' ] ; then
 	echo "Updating pkgver of PKGBUILD"
 	sed -i "s/^pkgver=.*$/pkgver=$INPUT_PKGVER/g" PKGBUILD
