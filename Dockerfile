@@ -2,7 +2,7 @@
 FROM docker.io/library/archlinux:multilib-devel
 
 # Install dependencies
-RUN pacman -Syu --needed --noconfirm pacman-contrib git
+RUN pacman -Syu --needed --noconfirm namcap pacman-contrib git
 
 # Setup user
 RUN useradd -m builder && \
